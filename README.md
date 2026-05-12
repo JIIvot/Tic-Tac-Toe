@@ -1,7 +1,7 @@
 # Tic-Tac-Toe
 Tic Tac Toe game made in C++ using SDL3 and SDL3_image libraries
 
-Controls: F11 - Toggle fullscreen mode, R - Restart
+Controls: F11 - Toggle fullscreen mode, R - Restart, Escape - Exit
 
 Intended to be compiled in Visual Studio 2026
 
