@@ -112,7 +112,7 @@ void CField::UpdateHoveredCell( SDL_FPoint mouseCoordinates )
 		return;
 	}
 	
-	mHoveredCell  = newHoveredCell;
+	mHoveredCell        = newHoveredCell;
 	mHoveredCoordinates = newHoveredCoordinates;
 	
 	mHoveredCell->SetHoveredSize();
@@ -120,7 +120,7 @@ void CField::UpdateHoveredCell( SDL_FPoint mouseCoordinates )
 
 void CField::UpdateGameState()
 {
-	if ( TryProcessWin( mLastTurnCoordinates) || TryProcessDraw() )
+	if ( TryProcessWin( mLastTurnCoordinates ) || TryProcessDraw() )
 	{
 		mIsGameFinished = true;
 	}
@@ -165,9 +165,6 @@ std::vector<CCell*> CField::GetSequenceInDirection( SDL_Point startCoordinates, 
 	return sequence;
 }
 
-// Tries to find a win sequence in direction and process cells
-// Returns true if the sequence was found and processed
-[[nodiscard]]
 bool CField::TryProcessSequenceInDirection( SDL_Point coordinates, SDL_Point direction )
 {
 	const ECellType type = mCells[coordinates.x][coordinates.y].mType;
