@@ -1,13 +1,20 @@
 #pragma once
 
 #include "Entity.h"
-#include "CellType.h"
 #include "SpriteData.h"
 
 #include <SDL3/SDL_rect.h>
 
 class CCell : public CEntity
 {
+public:
+	enum ECellType : uint8
+	{
+		eCellType_None = 0,
+		eCellType_Cross,
+		eCellType_Circle
+	};
+	
 public:
 	CCell( SDL_FPoint position )
 		: mPosition( position )
