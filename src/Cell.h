@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Entity.h"
-#include "SpriteData.h"
+#include "Types.h"
 
 #include <SDL3/SDL_rect.h>
 
@@ -43,11 +43,20 @@ public:
 	ECellType mType = eCellType_None;
 	
 private:
-	static constexpr float kNormalSize      = kCellSpriteSize * 4;
-	static constexpr float kHoveredSize     = kCellSpriteSize * 5;
-	static constexpr float kClosedSize      = kCellSpriteSize * 3;
-	static constexpr float kSizeLerpError   = 0.1f;
-	static constexpr float kSizeChangeSpeed = 5.0f;
+	static constexpr int32     kCellSpriteSize    = 24;
+
+	// Each index corresponds to ECellType enum
+	static constexpr SDL_FRect kCellSpriteRects[] = {
+		{ 0, 32, kCellSpriteSize, kCellSpriteSize }, // None
+		{ 32, 0, kCellSpriteSize, kCellSpriteSize }, // Cross
+		{ 0,  0, kCellSpriteSize, kCellSpriteSize }, // Circle
+	};
+	
+	static constexpr float     kNormalSize        = kCellSpriteSize * 4;
+	static constexpr float     kHoveredSize       = kCellSpriteSize * 5;
+	static constexpr float     kClosedSize        = kCellSpriteSize * 3;
+	static constexpr float     kSizeLerpError     = 0.1f;
+	static constexpr float     kSizeChangeSpeed   = 5.0f;
 	
 	SDL_FPoint mPosition;
 	float      mSize       = kNormalSize;
