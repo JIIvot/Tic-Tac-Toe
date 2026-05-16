@@ -1,5 +1,4 @@
 #include "Cell.h"
-#include "SpriteData.h"
 
 #include <SDL3/SDL_render.h>
 #include <cmath>
