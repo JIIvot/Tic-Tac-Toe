@@ -19,10 +19,9 @@ CField::CField( SDL_Point size, int32 winSequenceLength )
 		
 		for ( int32 y = 0; y < size.y; ++y )
 		{
-			const SDL_FPoint point = {
-				mCellRegionSize.x * ( static_cast<float>( x ) + 0.5f ),
-				mCellRegionSize.y * ( static_cast<float>( y ) + 0.5f )
-			};
+			SDL_FPoint point;
+			point.x = mCellRegionSize.x * ( static_cast<float>( x ) + 0.5f );
+			point.y = mCellRegionSize.y * ( static_cast<float>( y ) + 0.5f );
 			
 			mCells[x].emplace_back( point );
 		}
@@ -45,7 +44,7 @@ void CField::Reset()
 	{
 		for ( int32 y = 0; y < mSize.y; ++y )
 		{
-			mCells[x][y].mType = eCellType_None;
+			mCells[x][y].mType = CCell::eCellType_None;
 			mCells[x][y].SetNormalSize();
 		}
 	}
@@ -106,7 +105,7 @@ void CField::UpdateHoveredCell( SDL_FPoint mouseCoordinates )
 		mHoveredCell->SetNormalSize();
 	}
 	
-	if ( newHoveredCell->mType != eCellType_None )
+	if ( newHoveredCell->mType != CCell::eCellType_None )
 	{
 		mHoveredCell = nullptr;
 		return;
@@ -128,12 +127,12 @@ void CField::UpdateGameState()
 
 void CField::ProcessPlayerClick()
 {
-	if ( !mHoveredCell || mHoveredCell->mType != eCellType_None )
+	if ( !mHoveredCell || mHoveredCell->mType != CCell::eCellType_None )
 	{
 		return;
 	}
 	
-	mHoveredCell->mType = mIsCrossTurn ? eCellType_Cross : eCellType_Circle;
+	mHoveredCell->mType = mIsCrossTurn ? CCell::eCellType_Cross : CCell::eCellType_Circle;
 	mIsCrossTurn        = !mIsCrossTurn;
 	
 	++mTurnsNum;
@@ -146,7 +145,7 @@ void CField::ProcessPlayerClick()
 	UpdateGameState();
 }
 
-std::vector<CCell*> CField::GetSequenceInDirection( SDL_Point startCoordinates, SDL_Point direction, ECellType type )
+std::vector<CCell*> CField::GetSequenceInDirection( SDL_Point startCoordinates, SDL_Point direction, CCell::ECellType type )
 {
 	std::vector<CCell*> sequence;
 	
@@ -167,8 +166,8 @@ std::vector<CCell*> CField::GetSequenceInDirection( SDL_Point startCoordinates, 
 
 bool CField::TryProcessSequenceInDirection( SDL_Point coordinates, SDL_Point direction )
 {
-	const ECellType type = mCells[coordinates.x][coordinates.y].mType;
-	if ( type == eCellType_None )
+	const CCell::ECellType type = mCells[coordinates.x][coordinates.y].mType;
+	if ( type == CCell::eCellType_None )
 	{
 		return false;
 	}

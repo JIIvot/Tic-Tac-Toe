@@ -28,7 +28,7 @@ private:
 	void ProcessPlayerClick();
 	
 	[[nodiscard]]
-	std::vector<CCell*> GetSequenceInDirection( SDL_Point startCoordinates, SDL_Point direction, ECellType type );
+	std::vector<CCell*> GetSequenceInDirection( SDL_Point startCoordinates, SDL_Point direction, CCell::ECellType type );
 	
 	[[nodiscard]]
 	bool TryProcessSequenceInDirection( SDL_Point coordinates, SDL_Point direction );
